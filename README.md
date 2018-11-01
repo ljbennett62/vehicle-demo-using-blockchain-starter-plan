@@ -46,11 +46,6 @@ Use the ``Deploy to IBM Cloud`` button **OR** manually deploy to IBM Cloud.
 ## Directly deploy to IBM Cloud
 [![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://console.bluemix.net/devops/setup/deploy/?repository=https%3A//github.com/ibm-blockchain/vehicle-manufacture&branch=master&env_id=ibm%3Ayp%3Aus-south&deploy-region=ibm%3Ayp%3Aus-south)
 
-# Running the Application
-Use the ``Deploy to IBM Cloud`` button **OR** manually deploy to IBM Cloud.
-
-## Directly deploy to IBM Cloud
-[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://console.bluemix.net/devops/setup/deploy/?repository=https%3A//github.com/ibm-blockchain/vehicle-manufacture&branch=master&env_id=ibm%3Ayp%3Aus-south&deploy-region=ibm%3Ayp%3Aus-south)
 
 ## Manually deploy to IBM Cloud
 1. [Setup your machine](#1-setup-your-machine)
@@ -104,7 +99,7 @@ Starting on the [Rapidly build with IBM Blockchain Platform](https://console.blu
 
 ![create blockchain service](readme-images/service-name.png)
 
-You can now see the `Network created!` screen. Click **Launch** from this screen to see the dashboard for your network.
+You can now see the **Network created! screen**. Click **Launch** from this screen to see the dashboard for your network.
 
 ![launch network](readme-images/launch-network.png)
 
@@ -125,7 +120,7 @@ Out of the box, Starter Plan creates you a working simple network. If you select
 
 ![Learn more](readme-images/overview-tab.png)
 
-The network actually consists of two organizations **Company A (Org1)** and **Company B (Org2)**, although you are logged on as **Org1** by default and so can only see the `Orderer` service which is shared between both orgs, and a Certificate Authority (CA) and a Peer for **org1**.
+The network actually consists of two organizations **Company A (Org1)** and **Company B (Org2)**, although you are logged on as **Org1** by default and so can only see the `Orderer` service which is shared between both orgs, and a `Certificate Authority (CA)` and a `Peer` for **org1**.
 If you select the `Members` tab on the left you can see these members in a little more detail:
 
 ![Learn more](readme-images/members-tab.png)
@@ -134,21 +129,21 @@ If you select the `Channels` tab on the side you will see that there is also a c
 
 ![Learn more](readme-images/channel.png)
 
-For this tutorial we will use this defaultchannel for simplicity. Click on the “defaultchannel” row in the table to see more details on the channel:
+For this pattern we will use this **defaultchannel** for simplicity. Click on the `defaultchannel` row in the table to see more details on the channel:
 
 ![Learn more](readme-images/default-channel.png)
 
 Here you can see that there are already 3 blocks on the chain held by the channel that store the initial configuration information. You can select each row to see more details if you wish.
 
-### 2. Install chaincode on the channel
+### 4. Install chaincode on the channel
 
 The next step in this tutorial is to deploy the chaincode to the channel and first we have to get the code to install from a github repository using git clone.
 
-In order to complete this next step you will need to have `git` installed on your local machine. Open a command-line or terminal window, navigate to a suitable directory and create a new directory called `fabcar`. Navigate to the new ’fabcar’ directory and run the following command to clone the fabric samples source:
+In order to complete this next step you will need to have `git` installed on your local machine. Open a command-line or terminal window, navigate to a suitable directory and create a new directory called `fabcar`. Navigate to the new `fabcar` directory and run the following command to clone the fabric samples source:
 
 `git clone https://github.com/hyperledger/fabric-samples.git`
 
-This will copy the code for all the samples to your local machine. Now we have the code we need to deploy it. Using the Starter Plan UI, select the “Install Code” tab from the left hand sidebar to see the `Install code` screen:
+This will copy the code for all the samples to your local machine. Now we have the code we need to deploy it. Using the Starter Plan UI, select the `Install Code` tab from the left hand sidebar to see the `Install code` screen:
 
 ![Learn more](readme-images/install-code.png)
 
@@ -156,7 +151,7 @@ Click the drop-down called `Choose-peer` and select `org1-peer1`. Now click the 
 
 ![Learn more](readme-images/install-chaincode.png)
 
-On the `Install chaincode on org1peer1` dialog, enter “fabcar” for the `Chaincode ID`, enter `v1` for the `Chaincode Version`.
+On the `Install chaincode on org1peer1` dialog, enter **fabcar** for the `Chaincode ID`, enter **v1** for the `Chaincode Version`.
 
 You have a choice to deploy either the Nodejs or Golang version of the `fabcar` chaincode. Both provide the same functionality, so the choice comes down in part to skills. Choose `Node` or `Golang` for the `Chaincode Type`.
 
@@ -172,12 +167,12 @@ Example install of the node version of the fabcar chaincode:
 
 ![Learn more](readme-images/install-nodechaincode.png)
 
-Once you have made your choice, click the Submit button to upload the chaincode to Starter Plan. 
-Next you need to instantiate the chaincode. Click on the three dots in the `Actions` column to see the menu and choose `Instantiate`.
+Once you have made your choice, click the `Submit` button to upload the chaincode to Starter Plan. 
+Next you need to instantiate the chaincode. Click on the `three dots` in the `Actions` column to see the menu and choose `Instantiate`.
 
 ![Learn more](readme-images/instantiate-chaincode.png)
 
-On the `Instantiate chaincode` dialog, there are no arguments to provide for fabcar as it does not need any. However, you do need to select `defaultchannel` from the `Channel` drop-down and match the `Chaincode Type` to the language (Node or Golang) of the code you uploaded above. Then click `Submit`.
+On the `Instantiate chaincode` dialog, there are no arguments to provide for fabcar as it does not need any. However, you do need to select `defaultchannel` from the `Channel` drop-down and match the `Chaincode Type` to the language (**Node** or **Golang**) of the code you uploaded above. Then click `Submit`.
 
 ![Learn more](readme-images/submit-instantiate-chaincode.png)
 
@@ -200,9 +195,9 @@ You can now see there is one extra block on the channel which is the record of t
 Next, in the `fabric-samples/fabcar` folder that was downloaded from github, create a new folder called **config**. Click the **JSON** button shown above, and a new tab will open. Copy all the data shown in this tab into a new file called `network-profile.json` and save this file inside the `fabric-samples/fabcar/config` folder you just created.
 
 
-### 3. Configure your application to run on the IBM Blockchain Platform
+### 5. Configure your application to run on the IBM Blockchain Platform
 
-The fabcar applications you downloaded from github are hard-coded to use a local instance of Fabric. Because we are using Fabric located remotely on IBM Blockchain Platform, this article comes with new versions of the fabcar apps that will connect securely to the remote platform using the ‘network-profile.json’ configuration file you just download and saved above. The original four fabcar applications are called:
+The fabcar applications you downloaded from github are hard-coded to use a local instance of Fabric. Because we are using Fabric located remotely on IBM Blockchain Platform, this article comes with new versions of the fabcar apps that will connect securely to the remote platform using the `network-profile.json` configuration file you just download and saved above. The original four fabcar applications are called:
 
 - enrollAdmin.js
 
@@ -228,6 +223,7 @@ The `client-profile.json` file contains some extra configuration needed to acces
 Your next step is to extract these files from the zip file and put them into the correct locations. The first four files ending in `Network` should be placed into the `fabric-samples/fabcar` folder alongside the original four files from githhub. The `client-profile.json` file should be placed into the `fabric-samples/fabcar/config` folder alongside the `network-profile.json` file you downloaded and saved earlier.
 
 **Run npm install**
+
 The fabcar client application is written in Node.js. In order to complete this next step, you will need to have `Node.js` and `npm` installed on your local machine. *Note that currently Node.js v7 is not supported and you need to use v6.9.0 or earlier.*  Return to the command-line or terminal window and run the npm install command from within the fabcar folder:
 
 `cd fabric-samples/fabcar`
@@ -240,9 +236,9 @@ On Windows, you may need to install the Windows Build Tools if you get build err
 
 All the prerequisite node packages are now installed in order to run the fabcar client application.
 
-*Enrolling an Admin*
+**Enrolling an Admin**
 
-When your network was created in Starter Plan, each organisation had an Administrator user called “admin” automatically registered with the Certificate Authority (CA). You now need to send an enrolment request to the CA to retrieve their enrolment certificate (eCert). From within the fabcar folder run:
+When your network was created in Starter Plan, each organisation had an Administrator user called `admin` automatically registered with the Certificate Authority (CA). You now need to send an enrolment request to the CA to retrieve their enrolment certificate (eCert). From within the fabcar folder run:
 
 `node enrollAdminNetwork.js`
 
@@ -253,9 +249,12 @@ You should see output like this:
 Found organization: org1 and ca name: org1-ca
 Enrolling using enrollmentId: admin and EnrollmentSecret: 2d87ae1b59
 Successfully enrolled admin user "admin" with msp: "org1
-The enrollAdminNetwork.js application will create a local public/private key pair in a folder it creates called ‘hfc-key-store’ and send a Certificate Signing Request (CSR) to the remote CA for org1 to issue the eCert. The eCert, along with some metadata, will also be stored in the ‘hfc-key-store’ folder. The connection details of where the CA is located and the TLS certificate needed to connect to it are all obtained by the application from the ‘network-profile.json’ you downloaded earlier.
 
 ```
+
+The `enrollAdminNetwork.js` application will create a local public/private key pair in a folder it creates called `hfc-key-store` and send a Certificate Signing Request (CSR) to the remote CA for org1 to issue the eCert. The eCert, along with some metadata, will also be stored in the `hfc-key-store` folder. The connection details of where the CA is located and the TLS certificate needed to connect to it are all obtained by the application from the `network-profile.json` you downloaded earlier.
+
+
 
 **Enrolling a new user**
 
@@ -271,9 +270,11 @@ Successfully loaded admin from persistence
 Successfully registered "user1" - with secret:gTYshgoNxoLH
 Successfully enrolled member user "user30" with msp: "org1"
 "user1" was successfully registered and enrolled and is ready to interact with the fabric network
-Like the previous command this application has created a new public/private key pair and sent a CSR request to the CA to issue the eCert for user1. If you look in the ‘hlf-key-store’ folder you should see six files, three for each identity.
 
 ```
+
+Like the previous command this application has created a new public/private key pair and sent a CSR request to the CA to issue the eCert for user1. If you look in the `hlf-key-store` folder you should see six files, three for each identity.
+
 
 **Initialize the ledger**
 
@@ -314,7 +315,8 @@ Response is  [{"Key":"CAR0", "Record":{"colour":"blue","make":"Toyota","model":"
 **Update the ledger**
 
 Finally, let's make an update to the ledger. To do this, you need to make a simple change to the invokeNetwork.js command.
-Open the invokeNetwork.js file in an editor of your choice such as atom or VSCode, then find and edit the request variable as shown below so that it will invoke the `createCar` chaincode with a set of arguments that describe the car to be created. The changed request variable should look like this: 
+
+Open the `invokeNetwork.js` file in an editor of your choice such as atom or VSCode, then find and edit the request variable as shown below so that it will invoke the `createCar` chaincode with a set of arguments that describe the car to be created. The changed request variable should look like this: 
 
 ```
 var request = {
@@ -326,12 +328,15 @@ var request = {
 
 ```
 
-Save the file and run the edited command again using node invokeNetwork.js. The expected output is: 
+Save the file and run the edited command again using node `invokeNetwork.js`. The expected output is: 
 
 ```
 …
 Successfully committed the change to the ledger by the peer.
-This has created a new Honda vehicle with the owner "Dave" and stored it on the ledger. You can see the new car on the ledger by running the queryNetwork.js command again as you did before. You can now experiment with creating new cars on the ledger with different names and owners. If you look at the “Channel Overview” you should see new blocks added as you create new cars.
+```
+
+This has created a new Honda vehicle with the owner `Dave` and stored it on the ledger. You can see the new car on the ledger by running the `queryNetwork.js` command again as you did before. You can now experiment with creating new cars on the ledger with different names and owners. If you look at the `Channel Overview` you should see new blocks added as you create new cars.
+
 Finally, you may want to experiment with the changeOwner transaction to change the owner of a vehicle. To do this, change the request variable in invokeNetwork.js again to look like this: 
 var request = {
   chaincodeId: 'fabcar',
@@ -340,21 +345,25 @@ var request = {
   txId: tx_id
 };
 
-```
 
-Now save the file and run the command again using node invokeNetwork.js. The expected output is: 
+
+Now save the file and run the command again using node `invokeNetwork.js`. The expected output is: 
 
 ```
 …
 Successfully committed the change to the ledger by the peer
-You can see the updated owner on the ledger by running the queryNetwork.js command again. You can see the owner of CAR10 has changed from "Dave" to "MGK".
-If you want to query for a single car rather than for all cars, make this change to the request variable in the queryNetwork.js command and rerun it: 
+```
+
+You can see the updated owner on the ledger by running the `queryNetwork.js` command again. You can see the owner of **CAR10** has changed from **Dave** to **MGK**.
+
+If you want to query for a single car rather than for all cars, make this change to the request variable in the `queryNetwork.js` command and rerun it: 
+
 const request = {
   chaincodeId: 'fabcar',
   fcn: 'queryCar',
   args: ['CAR10']
 };
-```
+
 
 You should now see the information for a single car:
 
@@ -365,10 +374,10 @@ Query has completed, checking results
 Response is {"colour":"Black","make":"Honda","model":"Accord","owner":"MGK"}
 ```
 
-### 4. Summary
+### 6. Summary
 You now have a running network on the IBM Blockchain Platform Starter Plan, with a sample chaincode deployed to a peer and instantiated on a channel. You also have a running application that you can easily work with locally. You've populated the ledger with sample data, and your application can now communicate (query and update) with the blockchain on the IBM Blockchain Platform. Happy blockchaining!
 
-### 5. Acknowledgments
+### 7. Acknowledgments
 The authors thank Anthony O'Dowd of the IBM Blockchain Labs Global Engagement team for their expert guidance and support throughout the development of this tutorial.
 
 ## Additional Documentation
