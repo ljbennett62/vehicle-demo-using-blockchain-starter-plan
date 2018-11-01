@@ -91,11 +91,14 @@ git clone https://github.com/IBM-Blockchain/vehicle-demo-using-blockchain-starte
 ### 3. Create a network on the IBM Blockchain Platform Starter Plan
 To complete this pattern, you need an IBM Cloud account.  Please note that the Platform is updated often, and the screen shots in this tutorial may not exactly match the ones you see.
 
+=======
+
 Starting on the [Rapidly build with IBM Blockchain Platform](https://console.bluemix.net/catalog/services/blockchain) page, make sure you are logged-in and choose `Dallas` as the region as at the time of writing Starter Plan is only deployed to that region. Enter `Blockchain-demo` as the Service name, then select `Starter Plan Membership` and click `Create`. 
 
 ![create blockchain service](readme-images/service-name.png)
 
 You can now see the **Network created! screen**. Click **Launch** from this screen to see the dashboard for your network.
+
 
 ![launch network](readme-images/launch-network.png)
 
@@ -116,7 +119,9 @@ Out of the box, Starter Plan creates you a working simple network. If you select
 
 ![Learn more](readme-images/overview-tab.png)
 
-The network actually consists of two organizations **Company A (Org1)** and **Company B (Org2)**, although you are logged on as **Org1** by default and so can only see the `Orderer` service which is shared between both orgs, and a `Certificate Authority (CA)` and a `Peer` for **org1**.
+
+The network actually consists of two organizations **Company A (Org1)** and **Company B (Org2)**, although you are logged on as **Org1** by default and so can only see the `Orderer` service which is shared between both orgs, and a Certificate Authority (CA) and a Peer for **org1**.
+
 If you select the `Members` tab on the left you can see these members in a little more detail:
 
 ![Learn more](readme-images/members-tab.png)
