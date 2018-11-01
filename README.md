@@ -1,9 +1,10 @@
 # vehicle-demo-using-blockchain-starter-plan
 
-In this pattern, see how to create a network on the IBM Blockchain Platform, install a smart contract (chaincode) onto a peer in the network, and run a sample application to invoke it. You'll see how to populate the shared ledger and communicate with it by making calls from a local client application to query and update the ledger.
+In this pattern, see how to create a network on the [IBM Blockchain Platform](https://www.ibm.com/blockchain/platform), install a smart contract (chaincode) onto a peer in the network, and run a sample application to invoke it. You'll see how to populate the shared ledger and communicate with it by making calls from a local client application to query and update the ledger.
 
-The IBM Blockchain Platform Starter Plan is a fully integrated and enterprise-ready service running on the IBM Cloud. The platform is designed to accelerate the development, governance, and operation of a multi-institution business network. Starter Plan is specifically aimed at test and development scenarios rather than production ones. For production scenarios you should use the Enterprise Plan.
-The sample application we'll use in this tutorial is a Hyperledger Fabric sample called "fabcar" and, while you review the sample and run it locally in a Docker container, in this tutorial you'll see how to install and run it on the IBM Blockchain Platform Starter Plan on the IBM Cloud. Hyperledger is a global, open source, collaborative effort, hosted by The Linux Foundation, to advance cross-industry blockchain technologies. Hyperledger Fabric is a Hyperledger project and framework implementation whose modular architecture powers the IBM Blockchain Platform Starter Plan.
+
+The [IBM Blockchain Platform Starter Plan](https://www.ibm.com/blogs/blockchain/2018/03/getting-started-on-the-ibm-blockchain-platform-starter-plan/) is a fully integrated and enterprise-ready service running on the [IBM Cloud](www.ibm.com/cloud/). The platform is designed to accelerate the development, governance, and operation of a multi-institution business network. Starter Plan is specifically aimed at test and development scenarios rather than production ones. For production scenarios you should use the Enterprise Plan.
+The sample application we'll use in this tutorial is a Hyperledger Fabric sample called *fabcar* and, while you can review the sample and run it locally in a Docker container; in this tutorial, you'll see how to install and run it on the IBM Blockchain Platform Starter Plan on the IBM Cloud. Hyperledger is a global, open source, collaborative effort, hosted by The Linux Foundation, to advance cross-industry blockchain technologies. Hyperledger Fabric is a Hyperledger project and framework implementation whose modular architecture powers the IBM Blockchain Platform Starter Plan.
 
 
 This code pattern is for developers looking to start building blockchain applications using the IBM Blockchain Platform Starter Plan. When the reader has completed this code pattern, they will understand how to:
@@ -28,18 +29,18 @@ This code pattern is for developers looking to start building blockchain applica
 * IBM Cloud account
 
 ## Included Components
-* [Hyperledger Composer v0.19.4](https://hyperledger.github.io/composer/latest/) Hyperledger Composer is an extensive, open development toolset and framework to make developing blockchain applications easier
-* [Hyperledger Fabric v1.1](https://hyperledger-fabric.readthedocs.io) Hyperledger Fabric is a platform for distributed ledger solutions, underpinned by a modular architecture delivering high degrees of confidentiality, resiliency, flexibility and scalability.
+* [Hyperledger Composer v0.20.3](https://hyperledger.github.io/composer/latest/) Hyperledger Composer is an extensive, open development toolset and framework to make developing blockchain applications easier
+* [Hyperledger Fabric v1.3](https://hyperledger-fabric.readthedocs.io/en/release-1.3/) Hyperledger Fabric is a platform for distributed ledger solutions, underpinned by a modular architecture delivering high degrees of confidentiality, resiliency, flexibility and scalability.
 * [IBM Blockchain Starter Plan](https://console.bluemix.net/catalog/services/blockchain) The IBM Blockchain Platform Starter Plan allows to build and try out blockchain network in an environment designed for development and testing
 
 ## Featured Technologies
-* [Nodejs](https://www.python.org/) Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code server-side
+* [Nodejs](https://nodejs.org/en/) Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code server-side
 
+# Running the Application
+Use the ``Deploy to IBM Cloud`` button **OR** manually deploy to IBM Cloud.
 
-## Steps
-1. [Clone the repo](#1-clone-the-repo)
-2. [Launch Hyperledger Fabric Network and Node App](#2-launch-hyperledger-fabric-network-and-node-app)
-3. [Create the Network Channel and Invoke a Transaction](#3-Create-the-Network-Channel-and-Invoke-a-Transaction)
+## Directly deploy to IBM Cloud
+[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://console.bluemix.net/devops/setup/deploy/?repository=https%3A//github.com/ibm-blockchain/vehicle-manufacture&branch=master&env_id=ibm%3Ayp%3Aus-south&deploy-region=ibm%3Ayp%3Aus-south)
 
 # Running the Application
 Use the ``Deploy to IBM Cloud`` button **OR** manually deploy to IBM Cloud.
@@ -58,22 +59,56 @@ Use the ``Deploy to IBM Cloud`` button **OR** manually deploy to IBM Cloud.
 8. [Deploy the applications](#8-deploy-the-applications)
 9. [Start the applications](#9-start-the-applications)
 
-### 1. Create a network on the IBM Blockchain Platform Starter Plan
-To complete this tutorial, you need an IBM Cloud account. Whilst use of the IBM Blockchain Platform Starter Plan is currently free whilst the service is in beta, an account is required for logging in. Please note that the Platform is updated often, and the screen shots in this tutorial may not exactly match the ones you see.
+### 1. Setup your machine
+- [npm](https://www.npmjs.com/)  (v5.x)
+- [Node](https://nodejs.org/en/) (version 8.9 or higher - note version 9 is not supported)
+* to install specific Node version you can use [nvm](https://hyperledger.github.io/composer/latest/installing/installing-prereqs.html)
 
-Starting on the [Rapidly build with IBM Blockchain Platform](xx) page, select `Service Plans`. Make sure you are logged-in and choose `US South` as the region as at the time of writing Starter Plan is only deployed to that region. Enter `Blockchain-demo` as the Service name, then select `Starter Plan Membership` and click `Create`. 
+  Example:
+  + 1. `nvm install --lts`
+  + 2. `nvm use --lts`
+  + 3. Output `Now using node v8.11.3 (npm v5.6.0)`
+- [Hyperledger Composer](https://hyperledger.github.io/composer/installing/development-tools.html)
+  * to install composer cli
+    `npm install -g composer-cli@0.20.3`
+- [Cloud Wallet Package](https://www.npmjs.com/package/composer-wallet-cloudant)
+  * `npm install -g composer-wallet-cloudant@0.0.13`
+- [Cloud Foundry CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
+  * for Mac OS X Installation
+    ```
+    brew tap cloudfoundry/tap
+    brew install cf-cli
+    ```
+  * for Linux (Debian and Ubuntu based) Installation
+    ```
+    wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+    echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+    sudo apt-get update
+    sudo apt-get install cf-cli
+    ```
+
+### 2. Clone the repository
+
+```
+git clone https://github.com/IBM-Blockchain/vehicle-demo-using-blockchain-starter-plan
+```
+
+### 3. Create a network on the IBM Blockchain Platform Starter Plan
+To complete this pattern, you need an IBM Cloud account.  Please note that the Platform is updated often, and the screen shots in this tutorial may not exactly match the ones you see.
+
+Starting on the [Rapidly build with IBM Blockchain Platform](https://console.bluemix.net/catalog/services/blockchain) page, make sure you are logged-in and choose `Dallas` as the region as at the time of writing Starter Plan is only deployed to that region. Enter `Blockchain-demo` as the Service name, then select `Starter Plan Membership` and click `Create`. 
 
 ![create blockchain service](readme-images/service-name.png)
 
-You can now see the `Network created!`` screen. Click `Launch` from this screen to see the dashboard for your network.
+You can now see the `Network created!` screen. Click **Launch** from this screen to see the dashboard for your network.
 
 ![launch network](readme-images/launch-network.png)
 
-The next screen is the getting started “welcome screen”. Click “Got it” when you have finished reading.
+The next screen is the getting started **welcome screen**. Click `Got it` when you have finished reading.
 
 ![Learn more](readme-images/learn-more.png)
 
-If you look at the top left you will see that your network has been given a generated name. Click on the name and change it to `fabcar`.
+If you look at the top left you will see that your network has been given a generated name. Click on the name and change it to **fabcar**.
 
 ![Learn more](readme-images/set-network-name1.png)
 ![Learn more](readme-images/set-network-name2.png)
@@ -86,8 +121,8 @@ Out of the box, Starter Plan creates you a working simple network. If you select
 
 ![Learn more](readme-images/overview-tab.png)
 
-The network actually consists of two organizations Company A (Org1) and Company B (Org2), although you are logged on as Org1 by default and so can only see the `Orderer` service which is shared between both orgs, and a Certificate Authority (CA) and a Peer for “org1”.
-If you select the “Members” tab on the left you can see these members in a little more detail:
+The network actually consists of two organizations **Company A (Org1)** and **Company B (Org2)**, although you are logged on as **Org1** by default and so can only see the `Orderer` service which is shared between both orgs, and a Certificate Authority (CA) and a Peer for **org1**.
+If you select the `Members` tab on the left you can see these members in a little more detail:
 
 ![Learn more](readme-images/members-tab.png)
 
@@ -272,6 +307,7 @@ Response is  [{"Key":"CAR0", "Record":{"colour":"blue","make":"Toyota","model":"
 
 ```
 
+
 **Update the ledger**
 
 Finally, let's make an update to the ledger. To do this, you need to make a simple change to the invokeNetwork.js command.
@@ -340,7 +376,7 @@ The authors thank Anthony O'Dowd of the IBM Blockchain Labs Global Engagement te
 * [Loyalty Program Use Case](./docs/use-case.md)
 
 ## Links
-* [Fabric Chaincode EVM](https://github.com/hyperledger/fabric-chaincode-evm)
+* [Blockchain Basics](https://developer.ibm.com/tutorials/cl-blockchain-basics-intro-bluemix-trs/)
 * [Hyperledger Fabric Docs](http://hyperledger-fabric.readthedocs.io/en/latest/)
 * [Solidity](https://solidity.readthedocs.io/en/v0.4.25/index.html)
 
