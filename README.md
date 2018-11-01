@@ -1,11 +1,7 @@
 # vehicle-demo-using-blockchain-starter-plan
 
-<<<<<<< HEAD
-
 In this pattern, see how to create a network on the [IBM Blockchain Platform](https://www.ibm.com/blockchain/platform), install a smart contract (chaincode) onto a peer in the network, and run a sample application to invoke it. You'll see how to populate the shared ledger and communicate with it by making calls from a local client application to query and update the ledger.
-=======
-In this pattern, see how to create a network on the IBM Blockchain Platform, install a smart contract (chaincode) onto a peer in the network, and run a sample application to invoke it. You'll see how to populate the shared ledger and communicate with it by making calls from a local client application to query and update the ledger.
->>>>>>> ba1673deb0f5246b3519124fa73672bbea0c743a
+
 
 The [IBM Blockchain Platform Starter Plan](https://www.ibm.com/blogs/blockchain/2018/03/getting-started-on-the-ibm-blockchain-platform-starter-plan/) is a fully integrated and enterprise-ready service running on the [IBM Cloud](www.ibm.com/cloud/). The platform is designed to accelerate the development, governance, and operation of a multi-institution business network. Starter Plan is specifically aimed at test and development scenarios rather than production ones. For production scenarios you should use the Enterprise Plan.
 The sample application we'll use in this tutorial is a Hyperledger Fabric sample called *fabcar* and, while you can review the sample and run it locally in a Docker container; in this tutorial, you'll see how to install and run it on the IBM Blockchain Platform Starter Plan on the IBM Cloud. Hyperledger is a global, open source, collaborative effort, hosted by The Linux Foundation, to advance cross-industry blockchain technologies. Hyperledger Fabric is a Hyperledger project and framework implementation whose modular architecture powers the IBM Blockchain Platform Starter Plan.
@@ -312,6 +308,7 @@ Response is  [{"Key":"CAR0", "Record":{"colour":"blue","make":"Toyota","model":"
 
 ```
 
+
 **Update the ledger**
 
 Finally, let's make an update to the ledger. To do this, you need to make a simple change to the invokeNetwork.js command.
@@ -388,7 +385,7 @@ The authors thank Anthony O'Dowd of the IBM Blockchain Labs Global Engagement te
 * [Loyalty Program Use Case](./docs/use-case.md)
 
 ## Links
-* [Blockchain Basicas](https://developer.ibm.com/tutorials/cl-blockchain-basics-intro-bluemix-trs/)
+* [Blockchain Basics](https://developer.ibm.com/tutorials/cl-blockchain-basics-intro-bluemix-trs/)
 * [Hyperledger Fabric Docs](http://hyperledger-fabric.readthedocs.io/en/latest/)
 * [Solidity](https://solidity.readthedocs.io/en/v0.4.25/index.html)
 
