@@ -34,13 +34,16 @@ This code pattern is for developers looking to start building blockchain applica
 ## Prerequisites
 * NPM V5.6.0
 * Node.js V8.10.0
+* Git
+
+
 * If you do not have an IBM Cloud account yet, you will need to create one [here](https://idaas.iam.ibm.com/idaas/mtfim/sps/authsvc?PolicyId=urn:ibm:security:authentication:asf:basicldapuser).
 
 ## Steps
 1. [Setup your machine](#1-setup-your-machine)
 2. [Clone the repository](#2-clone-the-repository)
 3. [Create a network on the IBM Blockchain Platform Starter Plan](#3-Create-a-network-on-the-IBM-Blockchain-Platform-Starter-Plan)
-4. [Install chaincode on the channel](#4-Install-chaincode-on-the-channel)
+4. [nstall chaincode on the channel](#4-Install-chaincode-on-the-channel)
 5. [Configure your application to run on the IBM Blockchain Platform](#5-Configure-your-application-to-run-on-the-IBM-Blockchain-Platform)
 6. [Summary](#6-summary)
 
@@ -74,6 +77,14 @@ This code pattern is for developers looking to start building blockchain applica
 
 ### 2. Clone the repository
 
+You need to get code for the application onto your local machine. Open a command-line or terminal window, navigate to a suitable directory and create a new directory called `fabcar`. Navigate to the new `fabcar` directory and run the following command to clone the fabric samples source:
+
+
+`git clone https://github.com/hyperledger/fabric-samples.git`
+
+This will copy the code for all the samples to your local machine. In a later step you will deploy the code.
+
+
 ```
 git clone https://github.com/IBM-Blockchain/vehicle-demo-using-blockchain-starter-plan
 ```
@@ -85,9 +96,9 @@ cd vehicle-demo-using-blockchain-starter-plan
 ```
 
 ### 3. Create a network on the IBM Blockchain Platform Starter Plan
-To complete this pattern, you need an IBM Cloud account.  Please note that the Platform is updated often, and the screen shots in this tutorial may not exactly match the ones you see.
+To complete this pattern, you need an IBM Cloud account.  Please note that the Platform is often changed, and the screen shots in this tutorial may not exactly match the ones you see.
 
-=======
+Create a new Blockchain service in your IBM Cloud space ([link](https://console.bluemix.net/catalog/services/blockchain)). Give your service a name, select 'Starter Membership Plan' for the pricing and then press Create. You should then be taken to the dashboard for your service
 
 Starting on the [Rapidly build with IBM Blockchain Platform](https://console.bluemix.net/catalog/services/blockchain) page, make sure you are logged-in and choose `Dallas` as the region as at the time of writing Starter Plan is only deployed to that region. Enter `Blockchain-demo` as the Service name, then select `Starter Plan Membership` and click `Create`. 
 
@@ -134,13 +145,9 @@ Here you can see that there are already 3 blocks on the chain held by the channe
 
 ### 4. Install chaincode on the channel
 
-The next step in this tutorial is to deploy the chaincode to the channel and first we have to get the code to install from a github repository using git clone.
+The next step in this tutorial is to deploy the chaincode to the channel.
 
-In order to complete this next step you will need to have `git` installed on your local machine. Open a command-line or terminal window, navigate to a suitable directory and create a new directory called `fabcar`. Navigate to the new `fabcar` directory and run the following command to clone the fabric samples source:
-
-`git clone https://github.com/hyperledger/fabric-samples.git`
-
-This will copy the code for all the samples to your local machine. Now we have the code we need to deploy it. Using the Starter Plan UI, select the `Install Code` tab from the left hand sidebar to see the `Install code` screen:
+Using the Starter Plan UI, select the `Install Code` tab from the left hand sidebar to see the `Install code` screen:
 
 ![Learn more](readme-images/install-code.png)
 
@@ -154,7 +161,7 @@ You have a choice to deploy either the Nodejs or Golang version of the `fabcar` 
 
 Finally, on this screen click `Choose files` to select the chaincode source to install.
 
-If you want to use the go version, select the `fabcar.go` chaincode single file from the `fabric-samples/chaincode/fabcar/go` folder that you downloaded from GitHub. However, if you prefer to use the node version, select both the `fabcar.js` file and the `package.json` files from the `fabric-samples/chaincode/fabcar/node` folder that was also downloaded from github.
+If you want to use the go version, select the `fabcar.go` chaincode single file from the `chaincode/fabcar/go` folder that resides in the github folder that you cloned earlier from GitHub. However, if you prefer to use the node version, select both the `fabcar.js` file and the `package.json` files from the `chaincode/fabcar/node` folder that was also downloaded from github.
 
 Example install of the go version of the fabcar chaincode:
 
@@ -169,7 +176,7 @@ Next you need to instantiate the chaincode. Click on the `three dots` in the `Ac
 
 ![Learn more](readme-images/instantiate-chaincode.png)
 
-On the `Instantiate chaincode` dialog, there are no arguments to provide for fabcar as it does not need any. However, you do need to select `defaultchannel` from the `Channel` drop-down and match the `Chaincode Type` to the language (**Node** or **Golang**) of the code you uploaded above. Then click `Submit`.
+On the `Instantiate chaincode` dialog, there are no arguments to provide for fabcar as it does not need any. However, you do need to select `defaultchannel` from the `Channel` drop-down and match the `Chaincode Type` to the language (**Node** or **Golang**) of the code you uploaded above. Click `Next`. You don't need to enter anything on the next screen, so then click `Submit`.
 
 ![Learn more](readme-images/submit-instantiate-chaincode.png)
 
@@ -181,20 +188,22 @@ Now the chaincode has been instantiated on the channel, select the Channels side
 
 ![Learn more](readme-images/chaincode-channel-complete.png)
 
-You can now see there is one extra block on the channel which is the record of the instantiate operation we performed above. Now select the `Chaincode` tab on this screen and select the `fabcar` row to expand it. You can now see two buttons under fabcar:
+You can now see there is one extra block on the channel which is the record of the instantiate operation we performed above. Now select the `Chaincode` tab on this screen and select the `fabcar` row to expand it. You can now see three buttons under fabcar:
 
 ![Learn more](readme-images/json-credentials.png)
 
 **JSON**: This JSON file holds the credentials and peer information for the blockchain network.
 
+**Logs**: This contains the IBM Cloud logging analysis data.
+
 **Delete**: This stops and deletes the chaincode instance.
 
-Next, in the `fabric-samples/fabcar` folder that was downloaded from github, create a new folder called **config**. Click the **JSON** button shown above, and a new tab will open. Copy all the data shown in this tab into a new file called `network-profile.json` and save this file inside the `fabric-samples/fabcar/config` folder you just created.
+Next, in the `vehicle-demo-using-blockchain-starter-plan/fabcar` folder that was downloaded from github, create a new folder called **config**. Click the **JSON** button shown above, and a new tab will open. Copy all the data shown in this tab into a new file called `network-profile.json` and save this file inside the `vehicle-demo-using-blockchain-starter-plan/fabcar/config` folder you just created.
 
 
 ### 5. Configure your application to run on the IBM Blockchain Platform
 
-The fabcar applications you downloaded from github are hard-coded to use a local instance of Fabric. Because we are using Fabric located remotely on IBM Blockchain Platform, this article comes with new versions of the fabcar apps that will connect securely to the remote platform using the `network-profile.json` configuration file you just download and saved above. The original four fabcar applications are called:
+The code you downloaded from github is hard-coded to use a local instance of Fabric. Because we are using Fabric located remotely on IBM Blockchain Platform, this pattern comes with new versions of the fabcar apps that will connect securely to the remote platform using the `network-profile.json` configuration file you just download and saved above. The original four fabcar applications are called:
 
 - enrollAdmin.js
 
