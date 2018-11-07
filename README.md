@@ -87,8 +87,6 @@ cd vehicle-demo-using-blockchain-starter-plan
 ### 3. Create a network on the IBM Blockchain Platform Starter Plan
 To complete this pattern, you need an IBM Cloud account.  Please note that the Platform is often changed, and the screen shots in this tutorial may not exactly match the ones you see.
 
-=======
-
 Starting on the [Rapidly build with IBM Blockchain Platform](https://console.bluemix.net/catalog/services/blockchain) page, make sure you are logged-in and choose `Dallas` as the region as at the time of writing Starter Plan is only deployed to that region. Enter `Blockchain-demo` as the Service name, then select `Starter Plan Membership` and click `Create`. 
 
 ![create blockchain service](readme-images/service-name.png)
