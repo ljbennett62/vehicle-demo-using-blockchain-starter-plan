@@ -40,7 +40,7 @@ This code pattern is for developers looking to start building blockchain applica
 1. [Setup your machine](#1-setup-your-machine)
 2. [Clone the repository](#2-clone-the-repository)
 3. [Create a network on the IBM Blockchain Platform Starter Plan](#3-Create-a-network-on-the-IBM-Blockchain-Platform-Starter-Plan)
-4. [Install chaincode on the channel](#4-Install-chaincode-on-the-channel)
+4. [nstall chaincode on the channel](#4-Install-chaincode-on-the-channel)
 5. [Configure your application to run on the IBM Blockchain Platform](#5-Configure-your-application-to-run-on-the-IBM-Blockchain-Platform)
 6. [Summary](#6-summary)
 
@@ -85,7 +85,7 @@ cd vehicle-demo-using-blockchain-starter-plan
 ```
 
 ### 3. Create a network on the IBM Blockchain Platform Starter Plan
-To complete this pattern, you need an IBM Cloud account.  Please note that the Platform is updated often, and the screen shots in this tutorial may not exactly match the ones you see.
+To complete this pattern, you need an IBM Cloud account.  Please note that the Platform is often changed, and the screen shots in this tutorial may not exactly match the ones you see.
 
 =======
 
