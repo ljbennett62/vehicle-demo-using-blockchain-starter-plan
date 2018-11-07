@@ -35,6 +35,8 @@ This code pattern is for developers looking to start building blockchain applica
 * NPM V5.6.0
 * Node.js V8.10.0
 * Git
+
+
 * If you do not have an IBM Cloud account yet, you will need to create one [here](https://idaas.iam.ibm.com/idaas/mtfim/sps/authsvc?PolicyId=urn:ibm:security:authentication:asf:basicldapuser).
 
 ## Steps
