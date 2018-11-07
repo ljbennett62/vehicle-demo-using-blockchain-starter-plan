@@ -36,7 +36,6 @@ This code pattern is for developers looking to start building blockchain applica
 * Node.js V8.10.0
 * If you do not have an IBM Cloud account yet, you will need to create one [here](https://idaas.iam.ibm.com/idaas/mtfim/sps/authsvc?PolicyId=urn:ibm:security:authentication:asf:basicldapuser).
 
-
 ## Steps
 1. [Setup your machine](#1-setup-your-machine)
 2. [Clone the repository](#2-clone-the-repository)
@@ -87,6 +86,8 @@ cd vehicle-demo-using-blockchain-starter-plan
 
 ### 3. Create a network on the IBM Blockchain Platform Starter Plan
 To complete this pattern, you need an IBM Cloud account.  Please note that the Platform is updated often, and the screen shots in this tutorial may not exactly match the ones you see.
+
+=======
 
 Starting on the [Rapidly build with IBM Blockchain Platform](https://console.bluemix.net/catalog/services/blockchain) page, make sure you are logged-in and choose `Dallas` as the region as at the time of writing Starter Plan is only deployed to that region. Enter `Blockchain-demo` as the Service name, then select `Starter Plan Membership` and click `Create`. 
 
@@ -310,7 +311,6 @@ Response is  [{"Key":"CAR0", "Record":{"colour":"blue","make":"Toyota","model":"
 
 
 **Update the ledger**
-
 Finally, let's make an update to the ledger. To do this, you need to make a simple change to the `invokeNetwork.js` command.
 
 Open the `invokeNetwork.js` file in an editor of your choice such as atom or VSCode, then find and edit the request variable as shown below so that it will invoke the `createCar` chaincode with a set of arguments that describe the car to be created. The changed request variable should look like this: 
