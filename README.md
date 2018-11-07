@@ -4,7 +4,7 @@ In this pattern, see how to create a network on the [IBM Blockchain Platform](ht
 
 
 The [IBM Blockchain Platform Starter Plan](https://www.ibm.com/blogs/blockchain/2018/03/getting-started-on-the-ibm-blockchain-platform-starter-plan/) is a fully integrated and enterprise-ready service running on the [IBM Cloud](www.ibm.com/cloud/). The platform is designed to accelerate the development, governance, and operation of a multi-institution business network. Starter Plan is specifically aimed at test and development scenarios rather than production ones. For production scenarios you should use the Enterprise Plan.
-The sample application we'll use in this tutorial is a Hyperledger Fabric sample called *fabcar* and, while you can review the sample and run it locally in a Docker container; in this tutorial, you'll see how to install and run it on the IBM Blockchain Platform Starter Plan on the IBM Cloud. Hyperledger is a global, open source, collaborative effort, hosted by The Linux Foundation, to advance cross-industry blockchain technologies. Hyperledger Fabric is a Hyperledger project and framework implementation whose modular architecture powers the IBM Blockchain Platform Starter Plan.
+The sample application we'll use in this pattern is a Hyperledger Fabric sample called *fabcar* and, while you can review the sample and run it locally in a Docker container; in this pattern you'll see how to install and run it on the IBM Blockchain Platform Starter Plan on the IBM Cloud. Hyperledger is a global, open source, collaborative effort, hosted by The Linux Foundation, to advance cross-industry blockchain technologies. Hyperledger Fabric is a Hyperledger project and framework implementation whose modular architecture powers the IBM Blockchain Platform Starter Plan.
 
 
 This code pattern is for developers looking to start building blockchain applications using the IBM Blockchain Platform Starter Plan. When the reader has completed this code pattern, they will understand how to:
@@ -22,37 +22,28 @@ This code pattern is for developers looking to start building blockchain applica
 4. The order is received by the manufacturer on their dashboard where they view the progress of the assembly of the vehicle and the shipment status.
 5. The vehicle regulatory views and tracks all details and changes with respect to the order on the blockchain, allowing maximum transparency.
 
-
-## Prerequisites
-* Docker:
-* Node.js
-* IBM Cloud account
-
 ## Included Components
 * [Hyperledger Composer v0.20.3](https://hyperledger.github.io/composer/latest/) Hyperledger Composer is an extensive, open development toolset and framework to make developing blockchain applications easier
 * [Hyperledger Fabric v1.3](https://hyperledger-fabric.readthedocs.io/en/release-1.3/) Hyperledger Fabric is a platform for distributed ledger solutions, underpinned by a modular architecture delivering high degrees of confidentiality, resiliency, flexibility and scalability.
 * [IBM Blockchain Starter Plan](https://console.bluemix.net/catalog/services/blockchain) The IBM Blockchain Platform Starter Plan allows to build and try out blockchain network in an environment designed for development and testing
 
 ## Featured Technologies
-* [Nodejs](https://nodejs.org/en/) Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code server-side
+* [IBM Blockchain](https://www.ibm.com/blockchain): Blockchain is a shared, immutable ledger for recording the history of transactions.
+* [Cloud](https://developer.ibm.com/depmodels/cloud/): Accessing computer and information technology resources through the Internet.
 
-# Running the Application
-Use the ``Deploy to IBM Cloud`` button **OR** manually deploy to IBM Cloud.
+## Prerequisites
+* NPM V5.6.0
+* Node.js V8.10.0
+* If you do not have an IBM Cloud account yet, you will need to create one [here](https://idaas.iam.ibm.com/idaas/mtfim/sps/authsvc?PolicyId=urn:ibm:security:authentication:asf:basicldapuser).
 
-## Directly deploy to IBM Cloud
-[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://console.bluemix.net/devops/setup/deploy/?repository=https%3A//github.com/ibm-blockchain/vehicle-manufacture&branch=master&env_id=ibm%3Ayp%3Aus-south&deploy-region=ibm%3Ayp%3Aus-south)
 
-
-## Manually deploy to IBM Cloud
+## Steps
 1. [Setup your machine](#1-setup-your-machine)
 2. [Clone the repository](#2-clone-the-repository)
-3. [Create the BNA File](#3-create-the-bna-file)
-4. [Create a Blockchain Service](#4-create-a-blockchain-service)
-5. [Configure certificates](#5-configure-certificates)
-6. [Install and start the network](#6-install-and-start-the-network)
-7. [Provision Cloudant](#7-provision-cloudant)
-8. [Deploy the applications](#8-deploy-the-applications)
-9. [Start the applications](#9-start-the-applications)
+3. [Create a network on the IBM Blockchain Platform Starter Plan](#3-Create-a-network-on-the-IBM-Blockchain-Platform-Starter-Plan)
+4. [Install chaincode on the channel](#4-Install-chaincode-on-the-channel)
+5. [Configure your application to run on the IBM Blockchain Platform](#5-Configure-your-application-to-run-on-the-IBM-Blockchain-Platform)
+6. [Summary](#6-summary)
 
 ### 1. Setup your machine
 - [npm](https://www.npmjs.com/)  (v5.x)
@@ -88,10 +79,14 @@ Use the ``Deploy to IBM Cloud`` button **OR** manually deploy to IBM Cloud.
 git clone https://github.com/IBM-Blockchain/vehicle-demo-using-blockchain-starter-plan
 ```
 
+Go ahead and cd into the directory
+
+```
+cd vehicle-demo-using-blockchain-starter-plan
+```
+
 ### 3. Create a network on the IBM Blockchain Platform Starter Plan
 To complete this pattern, you need an IBM Cloud account.  Please note that the Platform is updated often, and the screen shots in this tutorial may not exactly match the ones you see.
-
-=======
 
 Starting on the [Rapidly build with IBM Blockchain Platform](https://console.bluemix.net/catalog/services/blockchain) page, make sure you are logged-in and choose `Dallas` as the region as at the time of writing Starter Plan is only deployed to that region. Enter `Blockchain-demo` as the Service name, then select `Starter Plan Membership` and click `Create`. 
 
@@ -316,7 +311,7 @@ Response is  [{"Key":"CAR0", "Record":{"colour":"blue","make":"Toyota","model":"
 
 **Update the ledger**
 
-Finally, let's make an update to the ledger. To do this, you need to make a simple change to the invokeNetwork.js command.
+Finally, let's make an update to the ledger. To do this, you need to make a simple change to the `invokeNetwork.js` command.
 
 Open the `invokeNetwork.js` file in an editor of your choice such as atom or VSCode, then find and edit the request variable as shown below so that it will invoke the `createCar` chaincode with a set of arguments that describe the car to be created. The changed request variable should look like this: 
 
@@ -340,6 +335,7 @@ Successfully committed the change to the ledger by the peer.
 This has created a new Honda vehicle with the owner `Dave` and stored it on the ledger. You can see the new car on the ledger by running the `queryNetwork.js` command again as you did before. You can now experiment with creating new cars on the ledger with different names and owners. If you look at the `Channel Overview` you should see new blocks added as you create new cars.
 
 Finally, you may want to experiment with the changeOwner transaction to change the owner of a vehicle. To do this, change the request variable in invokeNetwork.js again to look like this: 
+
 var request = {
   chaincodeId: 'fabcar',
   fcn: 'changeCarOwner',
